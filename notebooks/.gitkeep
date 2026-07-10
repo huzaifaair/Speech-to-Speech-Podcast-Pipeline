@@ -1,0 +1,3 @@
+# Jupyter notebooks for experimentation by both developers.
+# Suggested naming: whisper_<topic>.ipynb, xtts_<topic>.ipynb to avoid conflicts.
+# This .gitkeep keeps the empty folder in version control.

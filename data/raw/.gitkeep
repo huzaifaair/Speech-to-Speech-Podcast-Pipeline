@@ -1,0 +1,3 @@
+# Place raw podcast audio input files here (e.g. podcast.mp3).
+# Audio files are gitignored so the repo stays small.
+# This .gitkeep keeps the empty folder in version control.

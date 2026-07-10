@@ -1,0 +1,9 @@
+# XTTS v2 Module (TTS / Voice Cloning) dependencies
+# Developer A owns this file. Keep it independent from the whisper_module.
+
+TTS>=0.22.0            # Coqui TTS (provides XTTS v2)
+torch>=2.0.0
+torchaudio>=2.0.0
+numpy>=1.24.0
+soundfile>=0.12.1
+python-dotenv>=1.0.0

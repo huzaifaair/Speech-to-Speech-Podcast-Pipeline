@@ -1,0 +1,3 @@
+# Place short reference voice samples here (6-30s clean mono .wav is ideal).
+# XTTS v2 uses these to clone a voice. Audio files are gitignored.
+# This .gitkeep keeps the empty folder in version control.

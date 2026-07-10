@@ -1,0 +1,7 @@
+# Root-level dev/orchestration dependencies (lightweight).
+# Each module has its OWN requirements.txt for its heavy ML stack.
+
+python-dotenv>=1.0.0
+
+# For notebooks/experimentation (optional):
+# jupyter>=1.0.0
