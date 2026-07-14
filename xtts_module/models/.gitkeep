@@ -1,0 +1,3 @@
+# This folder holds downloaded/cached XTTS v2 model weights.
+# Model files are large and are ignored by git (see root .gitignore).
+# This .gitkeep keeps the empty folder in version control.

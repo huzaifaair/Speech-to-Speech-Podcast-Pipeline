@@ -1,93 +1,53 @@
-# ==========================================================================
-# Python
-# ==========================================================================
+# =============================================================================
+# Speech-to-Speech Pipeline .gitignore
+# Large binaries and secrets are excluded; empty folder structure is kept
+# tracked via .gitkeep placeholders.
+# =============================================================================
+
+# --- Python ---
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
-.Python
 build/
 dist/
 *.egg-info/
-.eggs/
-develop-eggs/
-pip-wheel-metadata/
 
-# ==========================================================================
-# Virtual environments
-# ==========================================================================
+# --- Virtual environments ---
+venv_xtts
 venv/
 .venv/
 env/
-.env/
 ENV/
 */venv/
 */.venv/
 
-# ==========================================================================
-# Environment variables / secrets
-# ==========================================================================
+# --- Secrets / environment ---
 .env
 *.env
 !.env.example
 
-# ==========================================================================
-# AI / ML model weights & caches (large files - keep out of git)
-# ==========================================================================
-models/
-*/models/
-*.pt
-*.pth
-*.ckpt
-*.bin
-*.safetensors
-*.onnx
-*.h5
-*.pkl
-*.gguf
-.cache/
-**/checkpoints/
-
-# XTTS / Coqui / HuggingFace / Torch caches
-.torch/
-.cache/huggingface/
-tts_home/
-
-# ==========================================================================
-# Audio / media (raw inputs & generated outputs - large binaries)
-# ==========================================================================
-*.mp3
-*.wav
-*.m4a
-*.flac
-*.ogg
-*.aac
-*.wma
-*.mp4
-*.mov
-
-# ==========================================================================
-# Generated outputs (keep folders via .gitkeep, ignore contents)
-# ==========================================================================
-outputs/transcripts/*
-outputs/audio/*
-outputs/logs/*
-!outputs/**/.gitkeep
-*.log
-
-# Allow input data folders to stay tracked but ignore their media
+# --- Input data (large audio) — keep folders, ignore contents ---
 data/raw/*
 data/reference_voices/*
 !data/**/.gitkeep
 
-# ==========================================================================
-# Notebooks
-# ==========================================================================
+# --- Outputs (transcripts, audio, logs) — keep folders, ignore contents ---
+outputs/**/*
+!outputs/**/
+!outputs/**/.gitkeep
+
+# --- Model weights (per module) — keep folders, ignore contents ---
+*/models/*
+!*/models/.gitkeep
+
+# --- Logs ---
+*.log
+
+# --- Notebooks ---
 .ipynb_checkpoints/
 
-# ==========================================================================
-# IDE / OS
-# ==========================================================================
+# --- IDE / OS ---
 .vscode/
 .idea/
 *.swp

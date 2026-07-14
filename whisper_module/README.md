@@ -1,45 +1,49 @@
 # Whisper Module (ASR / Transcription)
 
-**Owner:** Developer B
+**Owner:** Developer B · Open-source · Local · Free (no paid API)
 
-This module handles **Automatic Speech Recognition (ASR)**. It takes a raw
-podcast audio file and produces a text transcript with timestamps, and can
-optionally translate the transcript into another language.
+Transcribes the podcast audio in `data/raw/` into text using
+[`openai-whisper`](https://github.com/openai/whisper), and writes `.txt` and
+`.srt` (subtitles with timestamps) into `outputs/transcripts/`. Can optionally
+translate speech to English.
 
-## Responsibilities
-- Load a podcast audio file from `../data/raw/`
-- Transcribe speech to text using Whisper (with word/segment timestamps)
-- Optionally translate the transcript to a target language
-- Write results to `../outputs/transcripts/`
-
-## Structure
+## Files
 ```
 whisper_module/
-├── src/
-│   ├── transcribe.py   # Core transcription logic
-│   └── translate.py    # Optional translation step
-├── models/             # Cached Whisper model weights (gitignored)
-├── requirements.txt    # Module-specific dependencies
-└── README.md
+├── src/transcribe.py    # transcription logic (transcribe_audio())
+├── models/              # cached Whisper weights (gitignored)
+└── requirements.txt     # openai-whisper, torch, python-dotenv
 ```
 
 ## Setup
 ```bash
-# From the whisper_module folder, using a dedicated virtual environment
-python -m venv .venv
-.venv\Scripts\activate        # Windows
-# source .venv/bin/activate   # macOS / Linux
-pip install -r requirements.txt
+# from project_root, with your virtual environment active
+pip install -r whisper_module/requirements.txt
+```
+Requires **FFmpeg** on your PATH.
+
+## Run independently
+```bash
+# default: first file in data/raw/, model size from .env (base)
+python whisper_module/src/transcribe.py
+
+# choose model + input, translate to English
+python whisper_module/src/transcribe.py --model small --input data/raw/podcast.mp3 --translate
 ```
 
-> **Note:** Whisper requires `ffmpeg` installed on your system.
-> Windows: `winget install Gyan.FFmpeg` — macOS: `brew install ffmpeg`
+CLI flags: `--input`, `--model` (tiny|base|small|medium|large-v3),
+`--language`, `--translate`, `--output`.
 
-## Usage
-```bash
-python src/transcribe.py --input ../data/raw/podcast.mp3 --model small
+## Import it
+```python
+from whisper_module.src.transcribe import transcribe_audio
+result = transcribe_audio(model_size="base", translate=False)
 ```
 
 ## Output
-A transcript is written to `../outputs/transcripts/` as both a `.txt` file and
-a `.json` file (the JSON includes timestamps used by the pipeline downstream).
+- `outputs/transcripts/<name>.txt` — plain transcript
+- `outputs/transcripts/<name>.srt` — subtitles with timestamps
+- progress/errors logged to `outputs/logs/pipeline.log`
+
+Configuration (`WHISPER_MODEL_SIZE`, `DEVICE`) comes from `.env` via
+`shared/config.py`.

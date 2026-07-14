@@ -1,7 +1,7 @@
-# Root-level dev/orchestration dependencies (lightweight).
-# Each module has its OWN requirements.txt for its heavy ML stack.
+# Root / shared dependencies (used by shared/ code: config, utils, pipeline).
+# Module-specific ML dependencies live in each module's own requirements.txt.
 
-python-dotenv>=1.0.0
-
-# For notebooks/experimentation (optional):
-# jupyter>=1.0.0
+pydub          # silence/energy detection for reference-clip extraction
+librosa        # audio analysis helpers
+soundfile      # reading/writing WAV audio
+python-dotenv  # load settings from .env
